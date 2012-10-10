@@ -1,0 +1,21 @@
+{
+  "name":         "routedox",
+  "description":  "A quick n' dirty tool that uses dox and mustache to generate HTML documentation",
+  "private":      false,
+  "version":      "0.0.1",
+  "author":       "Matthew Robben (matthew.robben@gmail.com)",
+  "scripts": {
+    "test":       "./scripts/run-tests.sh"
+  },
+  "dependencies": {
+    "dox":              "git://github.com/mfrobben/dox.git",
+    "mustache":         "*"
+  },
+  "devDependencies":{
+    "mocha":            "1.x.x",
+    "should":           "1.x.x"
+  },
+  "engines": {
+    "node":             "0.8.x"
+  }
+}
