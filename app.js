@@ -24,10 +24,10 @@ var defaultHtml =       '<!DOCTYPE html>\n<html>\n<head>\n' +
  * Function: documentFileCommentsInDirectory
  *
  * This function iterates through files in a directory, reads all JSDoc tagged block comments, processes
- * them, and if they aren't marked @api: private, they're appended to the output file as rendered HTML.
+ * them, and if they aren't marked `@api private`, they're appended to the output file as rendered HTML.
  *
  * @param dirPath
- * @api: private
+ * @api private
  */
 function documentFileCommentsInDirectory(dirPath) {
 
@@ -49,6 +49,7 @@ function documentFileCommentsInDirectory(dirPath) {
             for (var j = 0; j < commentArray.length; j++) {
 
                 var comment = commentArray[j]
+                console.log(comment)
 
                 // we only care about JSDoc tagged + public function comments
                 if (comment.tags.length > 0 && comment.isPrivate === false) {
@@ -68,7 +69,7 @@ function documentFileCommentsInDirectory(dirPath) {
  *
  * @param {JSONObject} comment A single comment from a javascript file
  * @return {JSONObject} The comment after modification
- * @api: private
+ * @api private
  */
 
 function simplifyCommentTags(comment){
