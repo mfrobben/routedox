@@ -32,7 +32,6 @@ var defaultHtml =       '<!DOCTYPE html>\n<html>\n<head>\n' +
 function documentFileCommentsInDirectory(dirPath) {
 
     var fileArray = fs.readdirSync(dirPath)
-
     for(var i = 0; i < fileArray.length; i++) {
 
         // don't recurse on node_modules or .*
@@ -47,9 +46,7 @@ function documentFileCommentsInDirectory(dirPath) {
             var data = fs.readFileSync(dirPath + '/' + fileArray[i])
             var commentArray = dox.parseComments(data.toString())
             for (var j = 0; j < commentArray.length; j++) {
-
                 var comment = commentArray[j]
-                console.log(comment)
 
                 // we only care about JSDoc tagged + public function comments
                 if (comment.tags.length > 0 && comment.isPrivate === false) {
@@ -77,17 +74,13 @@ function simplifyCommentTags(comment){
     comment['params'] = []
 
     for (var i = 0; i < comment.tags.length; i++){
-
         if (comment.tags[i]['type'] === 'param')
             comment['params'][i] =  comment.tags[i]
-
         else if (comment.tags[i]['type'] === 'return')
             comment['return'] = comment.tags[i]
     }
     return comment
 }
-
-
 
 
 
