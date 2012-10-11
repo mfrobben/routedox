@@ -6,6 +6,8 @@ var dox = require('dox'),
     fs = require('fs'),
     path = require('path')
 
+var cwdFolder = process.cwd().split('/')[process.cwd().split('/').length-1]
+
 var defaultTemplate =   '<h1>{{{description.summary}}}</h1>\n' +
                         '<p> {{{description.body}}}</p>\n' +
                         '<h3>Inputs:</h3>\n' +
@@ -16,7 +18,7 @@ var defaultTemplate =   '<h1>{{{description.summary}}}</h1>\n' +
                         '{{return.types}} - {{return.description}}<hr>'
 
 var defaultHtml =       '<!DOCTYPE html>\n<html>\n<head>\n' +
-                        '<title>Routedox Documentation for '+ process.cwd() + '</title>\n' +
+                        '<title>Routedox: '+ cwdFolder + '</title>\n' +
                         '</head>\n<body>\n'
 
 
