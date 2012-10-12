@@ -2,7 +2,7 @@
   "name":           "routedox",
   "description":    "A quick n' dirty tool that uses dox and mustache to generate HTML documentation",
   "private":        false,
-  "version":        "0.0.3",
+  "version":        "0.0.4",
   "author":         "Matthew Robben (matthew.robben@gmail.com)",
 
   "scripts": {

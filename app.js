@@ -18,7 +18,7 @@ var defaultTemplate =   '<h1>{{{description.summary}}}</h1>\n' +
                         '{{return.types}} - {{return.description}}<hr>'
 
 var noTagTemplate =     '<h1>{{{description.summary}}}</h1>\n' +
-                        '<p> {{{description.body}}}</p>\n'
+                        '<p> {{{description.body}}}</p>\n<hr>'
 
 var defaultHtml =       '<!DOCTYPE html>\n<html>\n<head>\n' +
                         '<title>Routedox: '+ cwdFolder + '</title>\n' +
