@@ -10,12 +10,15 @@ var cwdFolder = process.cwd().split('/')[process.cwd().split('/').length-1]
 
 var defaultTemplate =   '<h1>{{{description.summary}}}</h1>\n' +
                         '<p> {{{description.body}}}</p>\n' +
-                        '<h3>Inputs:</h3>\n' +
+                        '<h3>Input:</h3>\n' +
                         '{{#params}} ' +
                         '{{name}} - {{types}} - {{description}}' +
                         '<br>{{/params}}\n' +
-                        '<h3>Outputs:</h3>\n' +
+                        '<h3>Output:</h3>\n' +
                         '{{return.types}} - {{return.description}}<hr>'
+
+var noTagTemplate =     '<h1>{{{description.summary}}}</h1>\n' +
+                        '<p> {{{description.body}}}</p>\n'
 
 var defaultHtml =       '<!DOCTYPE html>\n<html>\n<head>\n' +
                         '<title>Routedox: '+ cwdFolder + '</title>\n' +
@@ -50,9 +53,15 @@ function documentFileCommentsInDirectory(dirPath) {
             for (var j = 0; j < commentArray.length; j++) {
                 var comment = commentArray[j]
 
+                simplifyCommentTags(comment)
+
                 // we only care about JSDoc tagged + public function comments
-                if (comment.tags.length > 0 && comment.isPrivate === false) {
-                    var docHtml = mustache.render(defaultTemplate, simplifyCommentTags(comment))
+                if (comment.params && comment['return'] && comment.isPrivate === false) {
+                    var docHtml = mustache.render(defaultTemplate, comment)
+                    fs.appendFileSync('./routedoc.html', docHtml)
+                }
+                else if (comment.isPrivate === false) {
+                    var docHtml = mustache.render(noTagTemplate, comment)
                     fs.appendFileSync('./routedoc.html', docHtml)
                 }
             }
@@ -81,7 +90,7 @@ function simplifyCommentTags(comment){
         else if (comment.tags[i]['type'] === 'return')
             comment['return'] = comment.tags[i]
     }
-    return comment
+    return
 }
 
 

@@ -19,6 +19,7 @@
  * @return {Object} Something equally silly as these inputs is returned.
  */
 
+
 /**
  * Route: POST /:sid/privateRoute
  *
@@ -30,3 +31,23 @@
  */
 
 
+/**
+ * Route: POST /thingy
+ *
+ * This comment shows how to format a comment that uses no tags but is IMO better formatted than the above.
+ * Very important: At least one @ tag must be present for JSDoc compliance - so you must at least use @api public
+ *
+ * ###Input:
+ * `    photoURL : String,
+ *      title : String,
+ *      description : String
+ * `
+ *
+ *
+ * ###Output:
+ *`     id : String, //foo
+ *`
+ *
+ *
+ * @api public
+ */
