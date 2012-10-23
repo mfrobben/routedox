@@ -42,7 +42,7 @@ function documentFileCommentsInDirectory(dirPath) {
         // don't recurse on node_modules, test, or .*
         // FYI - dox incorrectly parses mocha test files with describe syntax as a giant comment :(
         var stat = fs.statSync(dirPath + '/' + fileArray[i])
-        if (stat.isDirectory() && fileArray[i] !== 'node_modules' && fileArray[i] !== 'test' && fileArray[i][0] !== '.'){
+        if (stat.isDirectory() && fileArray[i] !== 'node_modules'  && fileArray[i] !== 'static' && fileArray[i] !== 'test' && fileArray[i][0] !== '.'){
             documentFileCommentsInDirectory(dirPath + '/' + fileArray[i])
         }
 
