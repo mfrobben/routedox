@@ -56,12 +56,12 @@ function documentFileCommentsInDirectory(dirPath) {
 
                 simplifyCommentTags(comment)
 
-                // we only care about JSDoc tagged + public function comments
-                if (comment.params && comment['return'] && comment.isPrivate === false) {
+                // we only care about JSDoc tagged comments with an @api field
+                if (comment.params && comment['return'] && comment.api && comment.api.visibility === 'public') {
                     var docHtml = mustache.render(defaultTemplate, comment)
                     fs.appendFileSync('./routedoc.html', docHtml)
                 }
-                else if (comment.isPrivate === false) {
+                else if (comment.api && comment.api.visibility === 'public') {
                     var docHtml = mustache.render(noTagTemplate, comment)
                     fs.appendFileSync('./routedoc.html', docHtml)
                 }
@@ -90,6 +90,8 @@ function simplifyCommentTags(comment){
             comment['params'][i] =  comment.tags[i]
         else if (comment.tags[i]['type'] === 'return')
             comment['return'] = comment.tags[i]
+        else if (comment.tags[i]['type'] === 'api')
+            comment['api'] = comment.tags[i]
     }
     return
 }

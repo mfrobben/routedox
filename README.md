@@ -19,6 +19,24 @@ Block comments should be formatted as follows:
  *
  * @param {paramType} paramName paramDescription
  * @return {returnType} returnDescription
- * @api private (or @api public)
+ * @api public	<--- this field must exist for routedox to pick up the comment.
  */
 ````
+
+You can also use markdown syntax to flag input and output similar to the following:
+
+````js
+/**
+ * NAME OF FUNCTION
+ *
+ * Description of your function
+ *
+ * ###Input:
+ * `foo : String`
+ *
+ * ###Output:
+ * `bar : Number`
+
+ * @api public
+ */
+ ````
