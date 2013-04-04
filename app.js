@@ -47,11 +47,18 @@ function documentFileCommentsInDirectory(dirPath) {
             fileArray[i] !== 'test' && fileArray[i][0] !== '.'){
             documentFileCommentsInDirectory(dirPath + '/' + fileArray[i])
         }
-
+        
         // only care about .js files
-        if (path.extname(fileArray[i]) === '.js'){
+        if (!stat.isDirectory() && path.extname(fileArray[i]) === '.js'){
+            var filePath = dirPath + '/' + fileArray[i]
 
-            var data = fs.readFileSync(dirPath + '/' + fileArray[i])
+            try {
+                var data = fs.readFileSync(filePath)
+            } catch (err) {
+                console.log('failed to open file:', filePath)
+                throw err
+            }
+            
             var commentArray = dox.parseComments(data.toString())
             for (var j = 0; j < commentArray.length; j++) {
                 var comment = commentArray[j]
